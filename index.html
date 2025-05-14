@@ -1,0 +1,29 @@
+<body>
+    <link rel="icon" href="data:,">
+    <div id="app"></div>
+    <script type="module" src="./index.js"></script>
+
+    <script type="module">
+        import { Vue, reactive, h } from './index.js';
+
+        const App = {
+            data: reactive({
+                message: 'Hello mini-vue'
+            }),
+            render() {
+                return h('div', null, [
+                    h('h2', { class: 'h2' }, `${this.data.message}`),
+                    h("input", {
+                        oninput: (e) => {
+                            this.data.message = e.target.value
+                        },
+                        value: this.data.message
+                    })
+                ])
+            }
+        }
+
+        const app = Vue.createApp(App)
+        app.mount('#app')
+    </script>
+</body>
